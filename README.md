@@ -1,4 +1,5 @@
-This is the added line
+This is the added line in Ubuntu-Docker
+
 For build prereqs, see [the CS144 VM setup instructions](https://web.stanford.edu/class/cs144/vm_howto).
 
 ## Sponge quickstart
