@@ -18,9 +18,40 @@
 
 ### 0. Shell 命令
 
+我的 Ubuntu Container 中没有 `cmake` 并且 `g++` 版本太低，至少需要 `g++ >= 8`，于是我首先安装了 `cmake`:
 
+```bash
+sudo apt update
+sudo apt install cmake
+```
 
+然后对 `g++` 进行了升级：
 
+```bash
+# 1. 当前g++为7.5
+$ g++ --version
+g++ (Ubuntu/Linaro 7.5.0-3ubuntu1~18.04) 7.5.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+...
+
+# 2. 安装g++-8
+$ sudo apt install g++-8
+
+# 3. 但是现在默认使用的仍为7.5
+$ g++ --version
+g++ (Ubuntu/Linaro 7.5.0-3ubuntu1~18.04) 7.5.0
+Copyright (C) 2017 Free Software Foundation, Inc.
+...
+
+# 4. 将默认的 g++ link到 g++-8
+$ sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 20 --slave /usr/bin/g++ g++ /usr/bin/g++-8
+update-alternatives: using /usr/bin/gcc-8 to provide /usr/bin/gcc (gcc) in auto mode
+
+# 5. 链接成功
+$ g++ --version
+g++ (Ubuntu/Linaro 8.4.0-1ubuntu1~18.04) 8.4.0
+Copyright (C) 2018 Free Software Foundation, Inc.
+```
 
 ### 1. 实现 wget
 
