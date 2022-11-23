@@ -57,6 +57,14 @@ Copyright (C) 2018 Free Software Foundation, Inc.
 
 在这个实验中，我需要使用系统自带的 TCP 协议，创建一个网络 socket，与远程主机建立稳定的字节流通道，抓取一个网页。
 
+该实现依赖于 Sponge，所以首先需要按照手册上的指示 build sponge。接着我们需要：
+
+1. 了解 Sponge 提供的 Socket 的实现，尤其是 `FileDescriptor`, `Socket`, `TCPSocket`, 以及 `Address` 这四个类的[文档](https://cs144.github.io/doc/lab0/class_file_descriptor.html)；
+2. 找到他们在 `/libsponge` 中的头文件，了解它们各自的接口；
+3. 使用 `TCPSocket` 和 `Address` 这两个类在 `/app/webget.cc` 中实现这个简单的 Web 客户端。
+
+
+
 
 
 
