@@ -10,17 +10,16 @@ void get_URL(const string &host, const string &path) {
     // Your code here.
     // 1. Connect to the "http" service on the host
     TCPSocket socket;
-    socket.connect(Address(host, 8080));
-    auto recv = socket.read();
-    socket.close();
-    cout << "recv = " << recv << endl;
-    cout << "path = " << path << endl;
+    socket.connect(Address(host, "http"));
     // 2. Request the URL path given in the "path" string.
-
+    string info =   "GET " + path + " HTTP/1.1\r\n" +
+                    "Host: " + host + "\r\n" +
+                    "Connection: close\r\n\r\n";
+    socket.write(info); 
     // 3. Print evth the server sends back until "eof"
-
-    // cerr << "Function called: get_URL(" << host << ", " << path << ").\n";
-    // cerr << "Warning: get_URL() has not been implemented yet.\n";
+    for (auto recvd = socket.read(); !socket.eof(); recvd = socket.read())
+        cout << recvd;
+    socket.close();
 }
 
 int main(int argc, char *argv[]) {
